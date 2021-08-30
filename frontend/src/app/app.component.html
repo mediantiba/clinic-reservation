@@ -1,0 +1,96 @@
+<div class="container">
+  <header class="jumbotron">
+    <h1 class="display-4">Mano klinika</h1>
+  </header>
+  <main>
+    <form class="w-50 mx-auto" #f="ngForm" (ngSubmit)="submit(f)">
+      <fieldset class="mb-3">
+        <legend>Asmens duomenys</legend>
+        <div class="form-group mb-3">
+          <label for="firstName" class="form-label">Vardas</label>
+          <input
+            ngModel
+            name="firstName"
+            id="firstName"
+            class="form-control"
+            type="text"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="lastName" class="form-label">Pavardė</label>
+          <input
+            ngModel
+            name="lastName"
+            id="lastName"
+            class="form-control"
+            type="text"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="personalCode" class="form-label">Asmens kodas</label>
+          <input
+            ngModel
+            name="personalCode"
+            id="personalCode"
+            class="form-control"
+            type="text"
+          />
+        </div>
+      </fieldset>
+      <fieldset class="mb-3">
+        <legend>Gydytojas</legend>
+        <div class="form-group">
+          <select ngModel name="doctor" id="doctor" class="form-control">
+            <option value="Doctor 1">Doctor 1</option>
+            <option value="Doctor 2">Doctor 2</option>
+            <option value="Doctor 3">Doctor 3</option>
+            <option value="Doctor 4">Doctor 4</option>
+            <option value="Doctor 5">Doctor 5</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset class="mb-3">
+        <legend>Laiko rezervacija</legend>
+        <div class="form-group mb-3">
+          <div class="d-flex flex-row align-items-center">
+            <div class="input-group align-items-center mr-2">
+              <input
+                ngModel
+                name="date"
+                id="datepicker"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                ngbDatepicker
+                [minDate]="reservationMinDate"
+                [maxDate]="reservationMaxDate"
+                #d="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  (click)="d.toggle()"
+                  type="button"
+                >
+                  <i class="bi bi-calendar-event"></i>
+                </button>
+              </div>
+            </div>
+            <div class="input-group align-items-center">
+              <ngb-timepicker
+                ngModel
+                name="time"
+                [minuteStep]="40"
+              ></ngb-timepicker>
+              <div class="input-group-append h-50">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-clock"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-primary float-right">Rezervuoti</button>
+    </form>
+  </main>
+</div>
