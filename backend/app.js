@@ -14,16 +14,13 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  (err) => {
-    if (err) {
+  (error) => {
+    if (error) {
       console.log("FAILED TO CONNECT TO DATABASE");
-      console.error(err);
+      console.error(error);
     } else {
+      console.log("CONNECTED TO DATABASE");
       app.listen(3000);
     }
   }
 );
-
-const connection = mongoose.connection;
-
-connection.on("open", () => console.log("CONNECTED TO DATABASE"));
