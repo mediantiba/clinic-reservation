@@ -80,7 +80,7 @@
             aria-describedby="doctorHelp"
           >
             <option value="">Prašome pasirinkti...</option>
-            <option *ngFor="let doctor of doctors$ | async" [value]="doctor.id">
+            <option *ngFor="let doctor of doctors$ | async" [ngValue]="doctor">
               {{ doctor.name + " | " + doctor.field }}
             </option>
           </select>

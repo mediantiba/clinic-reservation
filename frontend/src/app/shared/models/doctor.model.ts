@@ -1,5 +1,5 @@
 export class Doctor {
-  id!: string;
+  _id!: string;
   name!: string;
   field!: string;
 }
