@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const seed = require("./seed");
 
 const app = express();
 
@@ -14,12 +15,13 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  (error) => {
+  async (error) => {
     if (error) {
       console.log("FAILED TO CONNECT TO DATABASE");
       console.error(error);
     } else {
       console.log("CONNECTED TO DATABASE");
+      await seed();
       app.listen(3000);
     }
   }
