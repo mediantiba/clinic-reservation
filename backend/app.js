@@ -6,12 +6,17 @@ const seeder = require("./seeder");
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-  origin: ['http://localhost:4200', 'http://localhost:3001']
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:4200", "http://localhost:3001"],
+  })
+);
 
 const doctorsRouter = require("./routers/doctors");
 app.use("/doctors", doctorsRouter);
+
+const usersRouter = require("./routers/users");
+app.use("/users", usersRouter);
 
 mongoose.connect(
   "mongodb://database:27017",

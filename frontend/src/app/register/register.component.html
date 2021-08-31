@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Registracija</h5>
+    <form #f="ngForm" (ngSubmit)="submit(f)">
+      <div class="form-group">
+        <label for="firstName" class="form-label">Vardas</label>
+        <input
+          #firstName="ngModel"
+          ngModel
+          name="firstName"
+          id="firstName"
+          class="form-control"
+          type="text"
+          required
+        />
+        <p
+          *ngIf="firstName.touched && firstName.invalid"
+          class="form-text text-muted"
+        >
+          Šis laukas yra privalomas.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName" class="form-label">Pavardė</label>
+        <input
+          #lastName="ngModel"
+          ngModel
+          name="lastName"
+          id="lastName"
+          class="form-control"
+          type="text"
+          required
+        />
+        <p
+          *ngIf="lastName.touched && lastName.invalid"
+          class="form-text text-muted"
+        >
+          Šis laukas yra privalomas.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="personalCode" class="form-label">Asmens kodas</label>
+        <input
+          #personalCode="ngModel"
+          ngModel
+          name="personalCode"
+          id="personalCode"
+          class="form-control"
+          type="text"
+          required
+        />
+        <p
+          *ngIf="personalCode.touched && personalCode.invalid"
+          class="form-text text-muted"
+        >
+          Šis laukas yra privalomas.
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary float-right"
+        [disabled]="f.invalid"
+      >
+        Išsaugoti
+      </button>
+    </form>
+  </div>
+    <p
+    *ngIf="result"
+    class="alert m-3"
+    [class.alert-success]="result.status === 'success'"
+    [class.alert-danger]="result.status === 'error'"
+  >
+    {{ result.message }}
+  </p>
+</div>

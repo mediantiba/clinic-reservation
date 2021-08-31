@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DateTime } from 'luxon';
 import { Observable, of } from 'rxjs';
+import { RegisterComponent } from './register/register.component';
 import { Doctor } from './shared/models/doctor.model';
 import { DoctorsService } from './shared/services/doctors.service';
 
@@ -34,9 +35,13 @@ export class AppComponent implements OnInit {
     this.doctors$ = this.doctorsService.getDoctors();
   }
 
+  register() {
+    const modalRef = this.modalService.open(RegisterComponent);
+  }
+
   submit(form: NgForm) {
     console.log(form.value);
   }
 
-  constructor(public doctorsService: DoctorsService) {}
+  constructor(private modalService: NgbModal, public doctorsService: DoctorsService) {}
 }
