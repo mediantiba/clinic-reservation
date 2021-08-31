@@ -12,7 +12,7 @@ const doctors = [
 ];
 
 async function seed() {
-  await Doctor.remove({});
+  await Doctor.deleteMany();
   await Doctor.insertMany(doctors);
 }
 

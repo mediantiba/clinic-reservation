@@ -41,18 +41,14 @@
         <legend>Gydytojas</legend>
         <div class="form-group">
           <select ngModel name="doctor" id="doctor" class="form-control">
-            <option value="Doctor 1">Doctor 1</option>
-            <option value="Doctor 2">Doctor 2</option>
-            <option value="Doctor 3">Doctor 3</option>
-            <option value="Doctor 4">Doctor 4</option>
-            <option value="Doctor 5">Doctor 5</option>
+            <option *ngFor="let doctor of doctors$ | async" [value]="doctor.id">{{ doctor.name + ' | ' + doctor.field }}</option>
           </select>
         </div>
       </fieldset>
       <fieldset class="mb-3">
         <legend>Laiko rezervacija</legend>
         <div class="form-group mb-3">
-          <div class="d-flex flex-row align-items-center">
+          <div class="d-flex flex-column flex-lg-row align-items-lg-center">
             <div class="input-group align-items-center mr-2">
               <input
                 ngModel

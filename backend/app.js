@@ -1,13 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const seed = require("./seed");
 
 const app = express();
 
+app.use(express.json());
+app.use(cors({
+  origin: ['http://localhost:4200', 'http://localhost']
+}));
+
 const doctorsRouter = require("./routers/doctors");
 app.use("/doctors", doctorsRouter);
-
-app.use(express.json());
 
 mongoose.connect(
   "mongodb://database:27017",
