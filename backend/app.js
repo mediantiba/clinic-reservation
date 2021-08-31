@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const seed = require("./seed");
+const seeder = require("./seeder");
 
 const app = express();
 
@@ -25,7 +25,7 @@ mongoose.connect(
       console.error(error);
     } else {
       console.log("CONNECTED TO DATABASE");
-      await seed();
+      await seeder();
       app.listen(3000);
     }
   }
