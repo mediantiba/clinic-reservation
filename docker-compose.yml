@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  database:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes: 
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    depends_on: 
+      - database
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    volumes: 
+      - ./frontend/src:/app/src
+      - /app/node_modules
+
+volumes:
+  data:
+  logs:

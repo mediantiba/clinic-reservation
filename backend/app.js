@@ -9,7 +9,7 @@ app.use("/doctors", doctorsRouter);
 app.use(express.json());
 
 mongoose.connect(
-  "mongodb://host.docker.internal:27017",
+  "mongodb://database:27017",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
