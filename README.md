@@ -1,4 +1,4 @@
-# About
+# Summary
 
 This project is a demo of a reservation system for a clinic.
 
