@@ -10,6 +10,8 @@ The project consists of the following containers:
 
 To start the app, navigate to the root folder and run `docker-compose up` from the command line.
 
+To use the app, navigate to http://localhost:3001 in your browser.
+
 # What's included?
 
 - The ability to create simple accounts (no username or password)
