@@ -20,7 +20,10 @@ export class RegisterComponent {
             status: 'success',
             message: 'Registracija sėkminga',
           };
-          this.router.navigate(['reservations/new']);
+          setTimeout(() => {
+            this.modal.close();
+            this.router.navigate(['appointments/new']);
+          }, 1000);
         },
         (error) => (this.result = { status: 'error', message: 'Įvyko klaida' })
       );

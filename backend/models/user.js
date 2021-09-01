@@ -12,8 +12,14 @@ const userSchema = new mongoose.Schema({
   personalCode: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
+  appointments: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Appointment",
+    },
+  ],
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);

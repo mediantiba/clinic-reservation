@@ -1,0 +1,168 @@
+<div class="card">
+  <div class="card-body">
+    <form
+      *ngIf="currentUser$ | async as currentUser"
+      #f="ngForm"
+      (ngSubmit)="submit(f)"
+    >
+      <fieldset class="mb-3">
+        <legend>Asmens duomenys</legend>
+        <div class="form-group mb-3">
+          <label for="firstName" class="form-label">Vardas</label>
+          <input
+            #firstName="ngModel"
+            [ngModel]="currentUser.firstName"
+            name="firstName"
+            id="firstName"
+            class="form-control"
+            type="text"
+            readonly
+            required
+            aria-describedby="firstNameHelp"
+          />
+          <p
+            *ngIf="firstName.touched && firstName.invalid"
+            id="firstNameHelp"
+            class="form-text text-muted"
+          >
+            Šis laukas yra privalomas.
+          </p>
+        </div>
+        <div class="form-group mb-3">
+          <label for="lastName" class="form-label">Pavardė</label>
+          <input
+            #lastName="ngModel"
+            [ngModel]="currentUser.lastName"
+            name="lastName"
+            id="lastName"
+            class="form-control"
+            type="text"
+            readonly
+            required
+            aria-describedby="lastNameHelp"
+          />
+          <p
+            *ngIf="lastName.touched && lastName.invalid"
+            id="lastNameHelp"
+            class="form-text text-muted"
+          >
+            Šis laukas yra privalomas.
+          </p>
+        </div>
+        <div class="form-group mb-3">
+          <label for="personalCode" class="form-label">Asmens kodas</label>
+          <input
+            #personalCode="ngModel"
+            [ngModel]="currentUser.personalCode"
+            name="personalCode"
+            id="personalCode"
+            class="form-control"
+            type="text"
+            readonly
+            required
+            aria-describedby="personalCodeHelp"
+          />
+          <p
+            *ngIf="personalCode.touched && personalCode.invalid"
+            id="personalCodeHelp"
+            class="form-text text-muted"
+          >
+            Šis laukas yra privalomas.
+          </p>
+        </div>
+      </fieldset>
+      <fieldset class="mb-3">
+        <legend>Gydytojas</legend>
+        <div class="form-group">
+          <select
+            #doctor="ngModel"
+            ngModel
+            name="doctor_id"
+            id="doctor"
+            class="form-control"
+            required
+            aria-describedby="doctorHelp"
+          >
+            <option value="">Prašome pasirinkti...</option>
+            <option
+              *ngFor="let doctor of doctors$ | async"
+              [value]="doctor._id"
+            >
+              {{ doctor.field }}
+            </option>
+          </select>
+          <p
+            *ngIf="doctor.touched && doctor.invalid"
+            id="doctorHelp"
+            class="form-text text-muted"
+          >
+            Prašome pasirinkti gydytoją pas kurį norite apsilankyti iš sąrašo.
+          </p>
+        </div>
+      </fieldset>
+      <fieldset class="mb-3">
+        <legend>Laiko rezervacija</legend>
+        <div class="form-group mb-3">
+          <div class="d-flex flex-column flex-sm-row align-items-sm-center">
+            <div class="input-group align-items-center mr-2">
+              <input
+                ngModel
+                name="date"
+                id="datepicker"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                ngbDatepicker
+                [minDate]="appointmentMinDate"
+                [maxDate]="appointmentMaxDate"
+                #d="ngbDatepicker"
+                #dateRef="ngModel"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  (click)="d.toggle()"
+                  type="button"
+                >
+                  <i class="bi bi-calendar-event"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="dateRef.valid">
+          <app-time-grid
+            #time="ngModel"
+            ngModel
+            name="time"
+            required
+            [selectedDoctor]="doctor.value"
+            [selectedDate]="dateRef.value"
+            [appointments]="appointments$ | async"
+          ></app-time-grid>
+        </div>
+      </fieldset>
+      <input
+        [ngModel]="currentUser._id"
+        name="user_id"
+        readonly
+        required
+        hidden
+      />
+      <button
+        type="submit"
+        class="btn btn-primary float-right"
+        [disabled]="f.invalid"
+      >
+        Rezervuoti
+      </button>
+    </form>
+  </div>
+  <p
+    *ngIf="result"
+    class="alert m-3"
+    [class.alert-success]="result.status === 'success'"
+    [class.alert-danger]="result.status === 'error'"
+  >
+    {{ result.message }}
+  </p>
+</div>

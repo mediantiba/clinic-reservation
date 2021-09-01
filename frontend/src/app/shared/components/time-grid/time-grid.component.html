@@ -1,6 +1,6 @@
 <div class="grid d-flex flex-wrap">
-  <div *ngFor="let hour of hours" class="form-check cell m-1 py-2 pr-2" (click)="onSelect(hour); i.checked = true">
-    <input #i class="form-check-input" type="radio" name="time" [id]="'time-' + hour">
+  <div *ngFor="let hour of hours" class="form-check cell m-1 py-2 pr-2" (click)="onSelect(hour, i)">
+    <input #i class="form-check-input" type="radio" name="time" [id]="'time-' + hour" [disabled]="isDisabled(hour)">
     <label class="form-check-label" [for]="'time-' + hour">
       {{ hour }}
     </label>

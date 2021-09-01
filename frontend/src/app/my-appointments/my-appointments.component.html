@@ -1,0 +1,16 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Gydytojas</th>
+      <th>Data</th>
+      <th>Laikas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let appointment of appointments$ | async">
+      <td>{{ appointment.doctor?.field }}</td>
+      <td>{{ appointment.date | date:'yyyy-MM-dd' }}</td>
+      <td>{{ appointment.time }}</td>
+    </tr>
+  </tbody>
+</table>

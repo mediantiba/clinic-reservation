@@ -22,7 +22,7 @@ export class LoginComponent {
             message: 'Prisijungėte',
           };
           this.modal.close();
-          this.router.navigate(['reservations/new']);
+          this.router.navigate(['appointments/new']);
         },
         (error) => {
           this.result = { status: 'error', message: 'Įvyko klaida' };

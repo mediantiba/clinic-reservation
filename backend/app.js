@@ -18,6 +18,9 @@ app.use("/doctors", doctorsRouter);
 const usersRouter = require("./routers/users");
 app.use("/users", usersRouter);
 
+const appointmentsRouter = require("./routers/appointments");
+app.use("/appointments", appointmentsRouter);
+
 mongoose.connect(
   "mongodb://database:27017",
   {
