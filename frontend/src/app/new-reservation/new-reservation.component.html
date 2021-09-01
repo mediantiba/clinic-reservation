@@ -1,15 +1,16 @@
-<form #f="ngForm" (ngSubmit)="submit(f)">
+<form *ngIf="currentUser$ | async as currentUser" #f="ngForm" (ngSubmit)="submit(f)">
   <fieldset class="mb-3">
     <legend>Asmens duomenys</legend>
     <div class="form-group mb-3">
       <label for="firstName" class="form-label">Vardas</label>
       <input
         #firstName="ngModel"
-        ngModel
+        [ngModel]="currentUser.firstName"
         name="firstName"
         id="firstName"
         class="form-control"
         type="text"
+        readonly
         required
         aria-describedby="firstNameHelp"
       />
@@ -25,11 +26,12 @@
       <label for="lastName" class="form-label">Pavardė</label>
       <input
         #lastName="ngModel"
-        ngModel
+        [ngModel]="currentUser.lastName"
         name="lastName"
         id="lastName"
         class="form-control"
         type="text"
+        readonly
         required
         aria-describedby="lastNameHelp"
       />
@@ -45,11 +47,12 @@
       <label for="personalCode" class="form-label">Asmens kodas</label>
       <input
         #personalCode="ngModel"
-        ngModel
+        [ngModel]="currentUser.personalCode"
         name="personalCode"
         id="personalCode"
         class="form-control"
         type="text"
+        readonly
         required
         aria-describedby="personalCodeHelp"
       />
@@ -76,7 +79,7 @@
       >
         <option value="">Prašome pasirinkti...</option>
         <option *ngFor="let doctor of doctors$ | async" [ngValue]="doctor">
-          {{ doctor.name + " | " + doctor.field }}
+          {{ doctor.field }}
         </option>
       </select>
       <p

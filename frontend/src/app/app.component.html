@@ -22,13 +22,13 @@
     </div>
   </header>
   <main class="d-flex flex-row align-items-start">
-    <nav class="navbar w-25">
+    <nav *ngIf="auth.isAuthenticated$ | async" class="navbar w-25">
       <ul class="navbar-nav">
         <li class="nav-item mb-1">
-          <button class="nav-link btn btn-link" routerLink="new-reservation">Nauja rezervacija</button>
+          <button class="nav-link btn btn-link" routerLink="reservations/new">Nauja rezervacija</button>
         </li>
         <li class="nav-item mb-1">
-          <button class="nav-link btn btn-link" routerLink="my-reservations">Mano rezervacijos</button>
+          <button class="nav-link btn btn-link" routerLink="reservations">Mano rezervacijos</button>
         </li>
       </ul>
     </nav>

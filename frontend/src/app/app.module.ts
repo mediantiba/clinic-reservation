@@ -11,6 +11,7 @@ import { MyReservationsComponent } from './my-reservations/my-reservations.compo
 import { NewReservationComponent } from './new-reservation/new-reservation.component';
 import { RegisterComponent } from './register/register.component';
 import { TimeValidator } from './shared/validators/time.validator';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TimeValidator } from './shared/validators/time.validator';
     TimeValidator,
     NewReservationComponent,
     MyReservationsComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,

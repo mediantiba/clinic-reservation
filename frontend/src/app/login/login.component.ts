@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../shared/services/auth.service';
 
@@ -21,6 +22,7 @@ export class LoginComponent {
             message: 'Prisijungėte',
           };
           this.modal.close();
+          this.router.navigate(['reservations/new']);
         },
         (error) => {
           this.result = { status: 'error', message: 'Įvyko klaida' };
@@ -29,5 +31,5 @@ export class LoginComponent {
     }
   }
 
-  constructor(private auth: AuthService, public modal: NgbActiveModal) {}
+  constructor(private auth: AuthService, private router: Router, public modal: NgbActiveModal) {}
 }

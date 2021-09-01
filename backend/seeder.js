@@ -2,19 +2,22 @@ const Doctor = require("./models/doctor");
 
 const doctors = [
   {
-    name: "John Smith",
-    field: "General Practitioner",
+    field: "Šeimos gydytojas",
   },
   {
-    name: "Linda Smith",
-    field: "Ophthalmologist",
+    field: "Oftamologas",
+  },
+  {
+    field: "Stomatologas",
+  },
+  {
+    field: "Kardiologas",
   },
 ];
 
 async function seed() {
   Doctor.countDocuments({}, async (err, count) => {
-    if (!err & count === 0)
-      await Doctor.insertMany(doctors);
+    if (!err & (count === 0)) await Doctor.insertMany(doctors);
   });
 }
 

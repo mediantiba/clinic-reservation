@@ -4,6 +4,8 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DateTime } from 'luxon';
 import { Observable, of } from 'rxjs';
 import { Doctor } from '../shared/models/doctor.model';
+import { User } from '../shared/models/user.model';
+import { AuthService } from '../shared/services/auth.service';
 import { DoctorsService } from '../shared/services/doctors.service';
 
 @Component({
@@ -29,14 +31,16 @@ export class NewReservationComponent implements OnInit {
   };
 
   doctors$: Observable<Doctor[]> = of([]);
+  currentUser$: Observable<User | null> = of(null);
 
   ngOnInit() {
     this.doctors$ = this.doctorsService.getDoctors();
+    this.currentUser$ = this.auth.currentUser$;
   }
 
   submit(form: NgForm) {
     console.log(form.value);
   }
 
-  constructor(public doctorsService: DoctorsService) {}
+  constructor(private auth: AuthService, public doctorsService: DoctorsService) {}
 }

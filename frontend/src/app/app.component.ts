@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -20,7 +21,8 @@ export class AppComponent {
 
   logout() {
     this.auth.logout();
+    this.router.navigate(['home']);
   }
 
-  constructor(private modalService: NgbModal, public auth: AuthService) {}
+  constructor(private modalService: NgbModal, private router: Router, public auth: AuthService) {}
 }
