@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const Appointment = require("../models/appointment");
-const Doctor = require("../models/doctor");
 
 router.get("/", async (req, res) => {
   try {
@@ -29,14 +28,11 @@ router.get("/:personalCode", async (req, res) => {
 router.get("/:personalCode/appointments", async (req, res) => {
   try {
     const appointments = await Appointment
-    .find({personalCode: req.params.personalCode})
-    .populate("doctor");
+      .find()
+      .populate("doctor")
+      .populate("user")
 
-    if (!appointments) {
-      return res.sendStatus(404);
-    } else {
-      return res.json(appointments);
-    }
+    return res.json(appointments);
   } catch (error) {
     res.send(`Error: ${error}`);
   }
