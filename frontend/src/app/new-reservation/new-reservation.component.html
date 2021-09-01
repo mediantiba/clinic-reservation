@@ -1,4 +1,8 @@
-<form *ngIf="currentUser$ | async as currentUser" #f="ngForm" (ngSubmit)="submit(f)">
+<form
+  *ngIf="currentUser$ | async as currentUser"
+  #f="ngForm"
+  (ngSubmit)="submit(f)"
+>
   <fieldset class="mb-3">
     <legend>Asmens duomenys</legend>
     <div class="form-group mb-3">
@@ -106,6 +110,7 @@
             [minDate]="reservationMinDate"
             [maxDate]="reservationMaxDate"
             #d="ngbDatepicker"
+            #dateRef="ngModel"
           />
           <div class="input-group-append">
             <button
@@ -117,31 +122,15 @@
             </button>
           </div>
         </div>
-        <div class="input-group align-items-center">
-          <ngb-timepicker
-            #time="ngModel"
-            ngModel
-            name="time"
-            required
-            timeValidator
-            [minuteStep]="40"
-            aria-describedby="timeHelp"
-          ></ngb-timepicker>
-          <div class="input-group-append h-50">
-            <button class="btn btn-outline-secondary" type="button">
-              <i class="bi bi-clock"></i>
-            </button>
-          </div>
-        </div>
       </div>
-      <p
-        *ngIf="time.touched && time.hasError('invalidHours')"
-        id="timeHelp"
-        class="form-text text-muted"
-      >
-        Gydytojas nedirba pasirinktu laiku. Prašome pasirintki vizito laiką nuo
-        8:00 iki 17:00.
-      </p>
+    </div>
+    <div *ngIf="dateRef.valid">
+      <app-time-grid
+        #time="ngModel"
+        ngModel
+        name="time"
+        required
+      ></app-time-grid>
     </div>
   </fieldset>
   <button

@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { NewReservationComponent } from './new-reservation/new-reservation.component';
 import { RegisterComponent } from './register/register.component';
-import { TimeValidator } from './shared/validators/time.validator';
+import { TimeGridComponent } from './shared/components/time-grid/time-grid.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
@@ -18,10 +18,10 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    TimeValidator,
     NewReservationComponent,
     MyReservationsComponent,
     UnauthorizedComponent,
+    TimeGridComponent,
   ],
   imports: [
     BrowserModule,

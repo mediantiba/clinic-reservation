@@ -1,0 +1,17 @@
+@import '../../../../theme.scss';
+
+.cell {
+  border: 1px solid black;
+  width: 100px;
+  padding-left: 30px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary;
+    color: white;
+  }
+
+  & > label {
+    cursor: pointer;
+  }
+}
