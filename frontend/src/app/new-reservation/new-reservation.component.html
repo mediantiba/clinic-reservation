@@ -1,0 +1,151 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+  <fieldset class="mb-3">
+    <legend>Asmens duomenys</legend>
+    <div class="form-group mb-3">
+      <label for="firstName" class="form-label">Vardas</label>
+      <input
+        #firstName="ngModel"
+        ngModel
+        name="firstName"
+        id="firstName"
+        class="form-control"
+        type="text"
+        required
+        aria-describedby="firstNameHelp"
+      />
+      <p
+        *ngIf="firstName.touched && firstName.invalid"
+        id="firstNameHelp"
+        class="form-text text-muted"
+      >
+        Šis laukas yra privalomas.
+      </p>
+    </div>
+    <div class="form-group mb-3">
+      <label for="lastName" class="form-label">Pavardė</label>
+      <input
+        #lastName="ngModel"
+        ngModel
+        name="lastName"
+        id="lastName"
+        class="form-control"
+        type="text"
+        required
+        aria-describedby="lastNameHelp"
+      />
+      <p
+        *ngIf="lastName.touched && lastName.invalid"
+        id="lastNameHelp"
+        class="form-text text-muted"
+      >
+        Šis laukas yra privalomas.
+      </p>
+    </div>
+    <div class="form-group mb-3">
+      <label for="personalCode" class="form-label">Asmens kodas</label>
+      <input
+        #personalCode="ngModel"
+        ngModel
+        name="personalCode"
+        id="personalCode"
+        class="form-control"
+        type="text"
+        required
+        aria-describedby="personalCodeHelp"
+      />
+      <p
+        *ngIf="personalCode.touched && personalCode.invalid"
+        id="personalCodeHelp"
+        class="form-text text-muted"
+      >
+        Šis laukas yra privalomas.
+      </p>
+    </div>
+  </fieldset>
+  <fieldset class="mb-3">
+    <legend>Gydytojas</legend>
+    <div class="form-group">
+      <select
+        #doctor="ngModel"
+        ngModel
+        name="doctor"
+        id="doctor"
+        class="form-control"
+        required
+        aria-describedby="doctorHelp"
+      >
+        <option value="">Prašome pasirinkti...</option>
+        <option *ngFor="let doctor of doctors$ | async" [ngValue]="doctor">
+          {{ doctor.name + " | " + doctor.field }}
+        </option>
+      </select>
+      <p
+        *ngIf="doctor.touched && doctor.invalid"
+        id="doctorHelp"
+        class="form-text text-muted"
+      >
+        Prašome pasirinkti gydytoją pas kurį norite apsilankyti iš sąrašo.
+      </p>
+    </div>
+  </fieldset>
+  <fieldset class="mb-3">
+    <legend>Laiko rezervacija</legend>
+    <div class="form-group mb-3">
+      <div class="d-flex flex-column flex-sm-row align-items-sm-center">
+        <div class="input-group align-items-center mr-2">
+          <input
+            ngModel
+            name="date"
+            id="datepicker"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            ngbDatepicker
+            [minDate]="reservationMinDate"
+            [maxDate]="reservationMaxDate"
+            #d="ngbDatepicker"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              (click)="d.toggle()"
+              type="button"
+            >
+              <i class="bi bi-calendar-event"></i>
+            </button>
+          </div>
+        </div>
+        <div class="input-group align-items-center">
+          <ngb-timepicker
+            #time="ngModel"
+            ngModel
+            name="time"
+            required
+            timeValidator
+            [minuteStep]="40"
+            aria-describedby="timeHelp"
+          ></ngb-timepicker>
+          <div class="input-group-append h-50">
+            <button class="btn btn-outline-secondary" type="button">
+              <i class="bi bi-clock"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <p
+        *ngIf="time.touched && time.hasError('invalidHours')"
+        id="timeHelp"
+        class="form-text text-muted"
+      >
+        Gydytojas nedirba pasirinktu laiku. Prašome pasirintki vizito laiką nuo
+        8:00 iki 17:00.
+      </p>
+    </div>
+  </fieldset>
+  <button
+    type="submit"
+    class="btn btn-primary float-right"
+    [disabled]="f.invalid"
+  >
+    Rezervuoti
+  </button>
+</form>

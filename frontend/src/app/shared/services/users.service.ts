@@ -14,5 +14,9 @@ export class UsersService {
     return this.http.post<User>(this.url, { user });
   }
 
+  getUser(personalCode: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/${personalCode}`);
+  }
+
   constructor(private http: HttpClient) {}
 }

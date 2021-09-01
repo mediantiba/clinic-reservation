@@ -11,6 +11,19 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:personalCode", async (req, res) => {
+  try {
+    const user = await User.findOne({ personalCode: req.params.personalCode });
+    if (!user) {
+      return res.sendStatus(404);
+    } else {
+      return res.json(user);
+    }
+  } catch (error) {
+    res.send(`Error: ${error}`);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const user = await User.findOne({ personalCode: req.body.personalCode });
@@ -20,7 +33,7 @@ router.post("/", async (req, res) => {
       const result = await User.create({
         firstName: req.body.user.firstName,
         lastName: req.body.user.lastName,
-        personalCode: req.body.user.personalCode
+        personalCode: req.body.user.personalCode,
       });
       res.json(result);
     }

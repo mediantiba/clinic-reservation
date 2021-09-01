@@ -1,6 +1,17 @@
 <div class="card">
+  <div class="card-header">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   <div class="card-body">
     <h5 class="card-title">Registracija</h5>
+
     <form #f="ngForm" (ngSubmit)="submit(f)">
       <div class="form-group">
         <label for="firstName" class="form-label">Vardas</label>
@@ -68,7 +79,7 @@
       </button>
     </form>
   </div>
-    <p
+  <p
     *ngIf="result"
     class="alert m-3"
     [class.alert-success]="result.status === 'success'"
