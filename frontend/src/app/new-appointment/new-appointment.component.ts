@@ -52,7 +52,7 @@ export class NewAppointmentComponent implements OnInit {
         this.result = { status: 'success', message: 'Registracija sėkminga'};
         setTimeout(() => {
           this.router.navigate(['appointments']);
-        }, 3000);
+        }, 1000);
       },
       (error) => (this.result = { status: 'error', message: 'Įvyko klaida'})
     );
