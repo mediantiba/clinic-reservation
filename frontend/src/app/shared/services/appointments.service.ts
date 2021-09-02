@@ -10,12 +10,12 @@ import { Appointment } from '../models/appointment.model';
 export class AppointmentsService {
   private url = environment.api + '/appointments';
 
-  addAppointment(value: any): Observable<Appointment> {
-    return this.http.post<Appointment>(this.url, value);
-  }
-
   getAppointments(): Observable<Appointment[]> {
     return this.http.get<Appointment[]>(this.url);
+  }
+
+  addAppointment(value: any): Observable<Appointment> {
+    return this.http.post<Appointment>(this.url, value);
   }
 
   constructor(private http: HttpClient) {}

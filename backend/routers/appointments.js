@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Appointment = require("../models/appointment");
+const User = require("../models/user");
 
+// Get all appointments
 router.get("/", async (req, res) => {
   try {
     const appointments = await Appointment
@@ -14,7 +16,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-
+// Create a new appointment
 router.post("/", async (req, res) => {
   try {
     const appointment = await Appointment.findOne({
@@ -25,14 +27,20 @@ router.post("/", async (req, res) => {
     if (appointment) {
       res.sendStatus(409);
     } else {
-      const result = await Appointment.create({
+      const newAppointment = await Appointment.create({
         user: req.body.user_id,
         doctor: req.body.doctor_id,
         date: req.body.date,
-        time: req.body.time,
-        personalCode: req.body.personalCode
+        time: req.body.time
       });
-      res.json(result);
+
+      const updatedUser = await User.updateOne({ _id: req.body.user_id }, {
+        $addToSet: {
+          appointments: newAppointment
+        }
+      });
+
+      res.json(newAppointment);
     }
   } catch (error) {
     res.send(`Error: ${error}`);

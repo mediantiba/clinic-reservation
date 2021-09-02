@@ -11,10 +11,6 @@ import { User } from '../models/user.model';
 export class UsersService {
   private url = environment.api + '/users';
 
-  addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.url, { user });
-  }
-
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url);
   }
@@ -25,6 +21,10 @@ export class UsersService {
 
   getUserAppointments(personalCode: string): Observable<Appointment[]> {
     return this.http.get<Appointment[]>(`${this.url}/${personalCode}/appointments`)
+  }
+
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(this.url, { user });
   }
 
   constructor(private http: HttpClient) {}
