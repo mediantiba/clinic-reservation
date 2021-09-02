@@ -15,3 +15,6 @@ RUN npm run build
 FROM nginx
 
 COPY --from=build-step /app/dist/frontend /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
