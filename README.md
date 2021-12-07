@@ -20,10 +20,6 @@ To use the app, navigate to http://localhost:3001 in your browser.
 - Date and time selection
 - List of user's reservations
 
-# Todo
-
-- Limit the user's ability to create appointments. Limit should be 1 time per week.
-
 # Stack
 
 mongo - express - angular - node - docker
